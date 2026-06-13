@@ -1,53 +1,161 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login · Sistem Manajemen Blog</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/blog-theme.css') }}" rel="stylesheet">
+    <title>Login Admin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: #2c3947;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2c3947;
+            box-shadow: 0 0 0 2px rgba(44, 57, 71, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #2c3947;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #1f2833;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-error ul {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #2c3947;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+            color: #1f2833;
+        }
+    </style>
 </head>
+
 <body>
-<div class="auth-wrap">
-    <div class="auth-card fade-up">
-        <div class="auth-head">
-            <div class="auth-emblem">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#15784a" stroke-width="1.6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Login Admin</h1>
+            <p>Masukkan username dan password untuk melanjutkan.</p>
+        </div>
+
+        @if ($errors->any())
+            <div class="alert-error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <h1>Masuk</h1>
-            <p>Sistem Manajemen Blog — kelola kontenmu.</p>
-        </div>
+        @endif
 
-        <div class="auth-body">
-            @if($errors->any())
-                <div class="alert alert-danger" style="font-size:13px;">{{ $errors->first() }}</div>
-            @endif
+        <form action="{{ route('login.proses') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="user_name">Username</label>
+                <input type="text" id="user_name" name="user_name" value="{{ old('user_name') }}" required autofocus>
+            </div>
 
-            <form action="{{ route('login.proses') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="user_name" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="user_name" name="user_name"
-                           value="{{ old('user_name') }}" placeholder="Masukkan username" autofocus>
-                </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                           placeholder="Masukkan password">
-                </div>
+            <button type="submit" class="btn-submit">Masuk</button>
+        </form>
 
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="ingat" name="ingat" value="1">
-                    <label class="form-check-label" for="ingat" style="font-size:13px;">Ingat saya</label>
-                </div>
-
-                <button type="submit" class="btn btn-emerald w-100 py-2">Masuk</button>
-            </form>
-        </div>
+        <a href="{{ route('blog.index') }}" class="back-link">&larr; Kembali ke Blog</a>
     </div>
-</div>
+
 </body>
+
 </html>

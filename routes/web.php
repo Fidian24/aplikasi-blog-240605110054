@@ -18,8 +18,8 @@ Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show')->wh
 // ============================================================
 // AUTENTIKASI
 // ============================================================
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'proses'])->name('login.proses')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'proses'])->name('login.proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // ============================================================

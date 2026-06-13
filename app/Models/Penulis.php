@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Penulis extends Authenticatable
 {
@@ -20,6 +21,7 @@ class Penulis extends Authenticatable
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     public function artikel()
@@ -27,3 +29,4 @@ class Penulis extends Authenticatable
         return $this->hasMany(Artikel::class, 'id_penulis');
     }
 }
+
