@@ -1,11 +1,11 @@
 # Sistem Manajemen Blog (CMS) + Halaman Pengunjung — aplikasi-blog
 
 ## Identitas
-- **Nama Lengkap:** Adinda Nilam Cahya Putri Sina
-- **NIM:** 240605110137
+- **Nama Lengkap:** Fidian Trisnawati
+- **NIM:** 240605110054
 
 ## Deskripsi Singkat
-Aplikasi **Sistem Manajemen Blog (CMS)** berbasis **Laravel** dengan database `db_blog`.
+Aplikasi **Sistem Manajemen Blog (CMS)** berbasis **Laravel** dengan database `db_blog_web1`.
 Terdiri dari dua bagian:
 1. **Halaman Administrator (CMS)** — login penulis, lalu mengelola (CRUD) artikel, penulis,
    dan kategori artikel. Dilindungi middleware `auth`.
@@ -26,7 +26,7 @@ Laravel 10 · PHP 8.1+ · MySQL (`db_blog`) · Blade · Bootstrap 5 · CSS kusto
 1. **Siapkan server lokal** (Laragon/XAMPP), jalankan Apache & MySQL.
 2. **Buat database** `db_blog`, lalu impor `db_blog.sql` (struktur + data) melalui
    phpMyAdmin/HeidiSQL. (Opsional: impor data contoh artikel tambahan.)
-3. **Clone repositori** ini ke folder web server, mis. `C:\laragon\www\aplikasi-blog`.
+3. **Clone repositori** ini ke folder web server, mis. `C:\laragon\www\WebFidian1`.
 4. **Install dependensi:**
    ```bash
    composer install
@@ -39,9 +39,9 @@ Laravel 10 · PHP 8.1+ · MySQL (`db_blog`) · Blade · Bootstrap 5 · CSS kusto
    Lalu sesuaikan `.env`:
    ```
    APP_TIMEZONE=Asia/Jakarta
-   DB_DATABASE=db_blog
+   DB_DATABASE=db_blog_web1
    DB_USERNAME=root
-   DB_PASSWORD=
+   DB_PASSWORD=FidianSQL_24
    SESSION_DRIVER=file
    ```
 6. **Buat symbolic link storage** (agar gambar tampil):
@@ -60,9 +60,9 @@ Laravel 10 · PHP 8.1+ · MySQL (`db_blog`) · Blade · Bootstrap 5 · CSS kusto
    - Halaman admin: `http://localhost:8000/login`
 
 ## Akun Login (contoh)
-- Username: `ninakusuma_`
+- Username: `Fidian`
 - Password: [ISI PASSWORD / reset via `php artisan tinker`]
 
 ## Video Demonstrasi
-- **YouTube:** [ISI TAUTAN VIDEO YOUTUBE]
+- **YouTube:** [https://youtu.be/ZaiVi1yFox4]
 
